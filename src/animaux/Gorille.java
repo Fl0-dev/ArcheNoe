@@ -1,9 +1,9 @@
-package bo.arche;
+package animaux;
 
 import enumeration.Espece;
 import enumeration.Sexe;
 
-public class Gorille extends Animal{
+public class Gorille extends Animal implements Vegetarien {
     private static int nbGorille = 0;
 
     public Gorille(Sexe sexe, Espece espece) {

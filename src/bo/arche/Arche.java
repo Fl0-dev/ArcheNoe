@@ -1,5 +1,6 @@
 package bo.arche;
 
+import animaux.*;
 import enumeration.Espece;
 import enumeration.Sexe;
 import main.Message;
@@ -12,11 +13,16 @@ import main.Message;
 public class Arche {
     Animal[] animaux = new Animal[8];
 
+    /**
+     * Constructeur
+     */
     public Arche() {
     }
-    public Animal[] getAnimaux() {
-        return animaux;
-    }
+
+    /**
+     * Enregistrement lors de la montée dans le bateau
+     * avec création et ajout d'un animal
+     */
     public void arrivant(){
         String nomAnimal = Message.nom();
         int sexe = Message.sexe();
@@ -62,6 +68,7 @@ public class Arche {
         }
     }
     /**
+     * méthode pour ajouter un animal dans l'arche
      * @param animalAajouter animal qui rentre dans l'arche
      */
     public void ajouter(Animal animalAajouter) {
@@ -72,4 +79,7 @@ public class Arche {
             }
         }
     }
+
+
+
 }

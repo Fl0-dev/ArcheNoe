@@ -1,8 +1,7 @@
-package bo.arche;
+package animaux;
 
 import enumeration.Espece;
 import enumeration.Sexe;
-import main.Message;
 
 /**
  * classe  abstraite Animal

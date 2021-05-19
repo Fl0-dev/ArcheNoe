@@ -1,6 +1,9 @@
 package main;
 
-import bo.arche.*;
+import animaux.Chat;
+import animaux.Chien;
+import animaux.Gorille;
+import animaux.Lapin;
 import enumeration.Espece;
 import enumeration.Sexe;
 
@@ -41,13 +44,11 @@ public class Message {
         return sc.nextInt();
     }
 
-    public static void resultatFinale() {
-        System.out.printf("L'arche possède à son bord, %d chat(s), %d chien(s), %d gorille(s), %d lapin(s)",
-                Chat.getNbchat(),Chien.getNbChien(),Gorille.getNbGorille(),Lapin.getNbLapin());
+    public static void resultatFinale(int vegetaux,int viande) {
+        System.out.printf("L'arche possède à son bord, %d chat(s), %d chien(s), %d gorille(s), %d lapin(s)%n",
+                Chat.getNbchat(), Chien.getNbChien(), Gorille.getNbGorille(), Lapin.getNbLapin());
+        System.out.printf("Le commis doit donc avoir, à bord, %d végétaux et %dkg de viande%n",
+                vegetaux,viande);
     }
-
-
-    //demande si nouvel enregistrement
-
 }
 

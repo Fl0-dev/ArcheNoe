@@ -1,5 +1,4 @@
 package enumeration;
-
 /**
  * énumération des choix des espèces
  */

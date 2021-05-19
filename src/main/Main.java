@@ -1,7 +1,8 @@
 package main;
 
-import bo.arche.Animal;
 import bo.arche.Arche;
+import bo.arche.Stock;
+
 import java.util.Scanner;
 
 public class Main {
@@ -18,10 +19,12 @@ public class Main {
             nbPlaces++;
         }while(again=='O' & nbPlaces<9);
 
-        for (Animal element: arche.getAnimaux()) {
-            System.out.println(element);
-        }
-        Message.resultatFinale();
+        //remplissage des stock
+        int stockPourVegetariens = Stock.stockVegetaux();
+        int stockPourCarnivores = Stock.stockViande();
+
+        //message une fois l'arche remplit
+        Message.resultatFinale(stockPourVegetariens,stockPourCarnivores);
 
 
     }
