@@ -14,19 +14,25 @@ import java.util.Scanner;
 /**
  * Classe regroupant toutes les méthodes d'affichage des menus
  */
-
 public class Message {
 
-    //demande du nom
+
+    /**
+     * Méthode pour afficher la demande du nom
+     * @return string nom de l'animal
+     */
     public static String nom() {
         Scanner sc = new Scanner(System.in);
-
         System.out.println("Quel est ton nom?");
         return sc.nextLine();
     }
 
-    //demande du sexe
-    //TODO lecture en tableau
+
+    /**
+     * Méthode pour afficher la demande du sexe
+     * @return un int correspondant à l'ordinal de l'énumération
+     */
+    //on peur faire un affichage en passant dans le tableau Sexe.values()
     public static int sexe() {
         Scanner sc = new Scanner(System.in);
         int valeur;
@@ -49,8 +55,11 @@ public class Message {
         return valeur;
     }
 
-    //demande de l'espèce
-    //TODO lecture en tableau
+    /**
+     * Méthode pour afficher la demande de l'escpèce
+     * @return un int correspondant à l'ordinal de l'énumération
+     */
+    //on peur faire un affichage en passant dans le tableau Espece.values()
     public static int espece() {
         Scanner sc = new Scanner(System.in);
         int valeur;
@@ -77,6 +86,12 @@ public class Message {
         return valeur;
     }
 
+    /**
+     * Méthode pour afficher le nombre d'animaux selon les espèces
+     * et le stock de nourriture
+     * @param vegetaux le nombre de végétaux stocké
+     * @param viande les kilo de viande stocké
+     */
     public static void resultatFinale(int vegetaux,int viande) {
         System.out.printf("L'arche possède à son bord, %d chat(s), %d chien(s), %d gorille(s), %d lapin(s)%n",
                 Chat.getNbchat(), Chien.getNbChien(), Gorille.getNbGorille(), Lapin.getNbLapin());

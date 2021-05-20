@@ -46,20 +46,18 @@ public class Verif {
      */
     public static boolean sexeVerif(Animal animalTestee, Animal[] tab) {
         boolean verif = false;
-        switch (animalTestee.getEspece()) {
-            case CHAT:
-            case CHIEN:
-            case GORILLE:
-            case LAPIN:
-                for (Animal element : tab) {
+        //pour les animaux du tableau
+        for (Animal element : tab) {
+            //si la case n'est pas nul
                     if (element != null) {
-                        if (animalTestee.getSexe() == element.getSexe()) {
+                        //et si le sexe et la classe sont les même
+                        if (animalTestee.getSexe() == element.getSexe() && animalTestee.getEspece()==element.getEspece()) {
+                            //alors souci
                             verif = true;
                             break;
                         }
                     }
                 }
-        }
         return verif;
     }
 }
