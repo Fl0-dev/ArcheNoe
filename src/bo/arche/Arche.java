@@ -4,6 +4,9 @@ import animaux.*;
 import enumeration.Espece;
 import enumeration.Sexe;
 import main.Message;
+import packException.EspeceException;
+import packException.SexeException;
+import packException.Verif;
 
 /**
  * Classe Arche
@@ -13,6 +16,7 @@ import main.Message;
 public class Arche {
     Animal[] animaux = new Animal[8];
     int capacite = 0;
+
     /**
      * Constructeur
      */
@@ -25,66 +29,85 @@ public class Arche {
      */
     public void arrivant(){
 
+        String nomAnimal;
+        Animal arrivant = new Animal();
+        int sexe;
+        int espece;
+        boolean enregistre = false;
+        while (true) {
+            try {
+                //récupération du nom
+                nomAnimal = Message.nom();
+                //récupération du sexe
+                sexe = Message.sexe();
+                //récupération de l'espèce
+                espece = Message.espece();
+                switch (espece) {
+                    case 0:
+                        if (sexe == 0) {
+                            arrivant = new Chat(Sexe.MASCULIN, Espece.CHAT);
 
-        //récupération du nom
-        String nomAnimal = Message.nom();
-        //récupération du sexe
-        int sexe = Message.sexe();
-        //récupération de l'espèce
-        int espece = Message.espece();
-
-        switch(espece){
-            case 0:
-                if(sexe == 0) {
-                    Chat arrivant = new Chat(Sexe.MASCULIN,Espece.CHAT);
-                    ajouter(arrivant);
-                }else{
-                    Chat arrivant = new Chat(Sexe.FEMININ,Espece.CHAT);
-                    ajouter(arrivant);
+                        } else {
+                            arrivant = new Chat(Sexe.FEMININ, Espece.CHAT);
+                        }
+                        break;
+                    case 1:
+                        if (sexe == 0) {
+                            arrivant = new Chien(Sexe.MASCULIN, Espece.CHIEN);
+                        } else {
+                            arrivant = new Chien(Sexe.FEMININ, Espece.CHIEN);
+                        }
+                        break;
+                    case 2:
+                        if (sexe == 0) {
+                            arrivant = new Gorille(Sexe.MASCULIN, Espece.GORILLE);
+                        } else {
+                            arrivant = new Gorille(Sexe.FEMININ, Espece.GORILLE);
+                        }
+                        break;
+                    case 3:
+                        if (sexe == 0) {
+                            arrivant = new Lapin(Sexe.MASCULIN, Espece.LAPIN);
+                        } else {
+                            arrivant = new Lapin(Sexe.FEMININ, Espece.LAPIN);
+                        }
                 }
-                break;
-            case 1 : if(sexe == 0) {
-                Chien arrivant = new Chien(Sexe.MASCULIN,Espece.CHIEN);
-                ajouter(arrivant);
-            }else{
-                Chien arrivant = new Chien(Sexe.FEMININ, Espece.CHIEN);
-                ajouter(arrivant);
-            }
-                break;
-            case 2 :
-                if(sexe == 0) {
-                    Gorille arrivant = new Gorille(Sexe.MASCULIN,Espece.GORILLE);
-                    ajouter(arrivant);
-                }else{
-                    Gorille arrivant = new Gorille(Sexe.FEMININ,Espece.GORILLE);
-                    ajouter(arrivant);
-                }break;
-            case 3 :
-                if(sexe == 0) {
-                    Lapin arrivant = new Lapin(Sexe.MASCULIN,Espece.LAPIN);
-                    ajouter(arrivant);
-                }else{
-                    Lapin arrivant = new Lapin(Sexe.FEMININ,Espece.LAPIN);
-                    ajouter(arrivant);
+                //si souci sur le nombre d'espèce retourne vrai
+                if (Verif.NombreEspeceVerif(arrivant)) {
+                    //lève l'exception
+                    throw new EspeceException("On a déjà un couple de ton espèce. Désolé. Suivant!!");
+                //si souci sur le nombre d'espèce du même sexe
                 }
-
-        }
-        capacite++;
-        System.out.printf("L'animal %s est dans l'arche. (capacite %d/8)",nomAnimal,capacite);
-    }
-    /**
-     * méthode pour ajouter un animal dans l'arche
-     * @param animalAajouter animal qui rentre dans l'arche
-     */
-    public void ajouter(Animal animalAajouter) {
-        for (int i = 0; i < animaux.length; i++) {
-            if (animaux[i] == null) {
-                animaux[i] = animalAajouter;
+                else if (Verif.sexeVerif(arrivant, animaux)) {
+                    throw new SexeException("On a déjà une espèce de même sexe. Désolé. Suivant!!");
+                }
+                //coupe la boucle si AUCUN souci de vérification
                 break;
+                //traite l'exception
+            } catch (EspeceException | SexeException e) {
+                System.err.println(e.getMessage());
+                //traite l'exception
             }
         }
+            //ajout de l'animal une fois la vérification effectuée
+            ajouter(arrivant);
+            capacite++;
+            System.out.printf("L'animal %s est dans l'arche. (capacite %d/8)%n", nomAnimal, capacite);
+        }
+
+        /**
+         * méthode pour ajouter un animal dans l'arche
+         *
+         * @param animalAajouter animal qui rentre dans l'arche
+         */
+        public void ajouter (Animal animalAajouter){
+            for (int i = 0; i < animaux.length; i++) {
+                if (animaux[i] == null) {
+                    animaux[i] = animalAajouter;
+                    break;
+                }
+            }
+        }
+
+
     }
-
-
-
-}

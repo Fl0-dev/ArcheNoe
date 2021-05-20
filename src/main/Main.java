@@ -2,16 +2,19 @@ package main;
 
 import bo.arche.Arche;
 import bo.arche.Stock;
+import packException.EspeceException;
+import packException.SexeException;
 
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         Arche arche = new Arche();
-        char again = 'O';
+        char again;
         int nbPlaces = 1;
         do {
+
             arche.arrivant();
             System.out.println("Un autre animal veut-il entrer? Pas plus de 8! (O/N)");
             again = sc.next().toUpperCase().charAt(0);
