@@ -12,7 +12,7 @@ import main.Message;
  */
 public class Arche {
     Animal[] animaux = new Animal[8];
-
+    int capacite = 0;
     /**
      * Constructeur
      */
@@ -24,10 +24,15 @@ public class Arche {
      * avec création et ajout d'un animal
      */
     public void arrivant(){
+
+
+        //récupération du nom
         String nomAnimal = Message.nom();
+        //récupération du sexe
         int sexe = Message.sexe();
+        //récupération de l'espèce
         int espece = Message.espece();
-        System.out.printf("L'animal %s est dans l'arche%n",nomAnimal);
+
         switch(espece){
             case 0:
                 if(sexe == 0) {
@@ -62,10 +67,10 @@ public class Arche {
                     Lapin arrivant = new Lapin(Sexe.FEMININ,Espece.LAPIN);
                     ajouter(arrivant);
                 }
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + espece);
+
         }
+        capacite++;
+        System.out.printf("L'animal %s est dans l'arche. (capacite %d/8)",nomAnimal,capacite);
     }
     /**
      * méthode pour ajouter un animal dans l'arche

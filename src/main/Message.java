@@ -6,7 +6,9 @@ import animaux.Gorille;
 import animaux.Lapin;
 import enumeration.Espece;
 import enumeration.Sexe;
+import packException.SaisieException;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -27,21 +29,52 @@ public class Message {
     //TODO lecture en tableau
     public static int sexe() {
         Scanner sc = new Scanner(System.in);
-
-        System.out.printf("Quel est ton sexe? %d-%s %d-%s%n", Sexe.MASCULIN.ordinal(), Sexe.MASCULIN, Sexe.FEMININ.ordinal(), Sexe.FEMININ);
-        return sc.nextInt();
+        int valeur;
+        while(true) {
+            System.out.printf("Quel est ton sexe? %d-%s %d-%s%n", Sexe.MASCULIN.ordinal(), Sexe.MASCULIN, Sexe.FEMININ.ordinal(), Sexe.FEMININ);
+            try {
+                valeur = sc.nextInt();
+                if(valeur != Sexe.MASCULIN.ordinal() & valeur != Sexe.FEMININ.ordinal())
+                    throw new SaisieException("La saisie n'est un des choix proposé. Réessaie ou dégage!");
+                break;
+            } catch (InputMismatchException e) {
+                System.err.println("Saisie incorrect. Réessaie...");
+            } catch (SaisieException e){
+                System.err.println("La saisie n'est un des choix proposé. Réessaie ou dégage!");
+            }
+            finally {
+                sc.nextLine();
+            }
+        }
+        return valeur;
     }
 
     //demande de l'espèce
     //TODO lecture en tableau
     public static int espece() {
         Scanner sc = new Scanner(System.in);
-        System.out.printf("Quelle est ton espece? %d-%s %d-%s %d-%s %d-%s%n",
-                Espece.CHAT.ordinal(), Espece.CHAT,
-                Espece.CHIEN.ordinal(), Espece.CHIEN,
-                Espece.GORILLE.ordinal(), Espece.GORILLE,
-                Espece.LAPIN.ordinal(), Espece.LAPIN);
-        return sc.nextInt();
+        int valeur;
+        while(true) {
+            System.out.printf("Quelle est ton espece? %d-%s %d-%s %d-%s %d-%s%n",
+                    Espece.CHAT.ordinal(), Espece.CHAT,
+                    Espece.CHIEN.ordinal(), Espece.CHIEN,
+                    Espece.GORILLE.ordinal(), Espece.GORILLE,
+                    Espece.LAPIN.ordinal(), Espece.LAPIN);
+            try {
+                valeur = sc.nextInt();
+                if(valeur != Espece.CHAT.ordinal() & valeur != Espece.CHIEN.ordinal() & valeur != Espece.GORILLE.ordinal() & valeur != Espece.LAPIN.ordinal())
+                    throw new SaisieException("La saisie n'est un des choix proposé. Réessaie ou dégage!");
+                break;
+            } catch (InputMismatchException e) {
+                System.err.println("Saisie incorrect. Réessaie...");
+            }catch(SaisieException e){
+                System.err.println("La saisie n'est un des choix proposé. Réessaie ou dégage!");
+            }
+            finally {
+                sc.nextLine();
+            }
+        }
+        return valeur;
     }
 
     public static void resultatFinale(int vegetaux,int viande) {
