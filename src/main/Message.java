@@ -32,7 +32,7 @@ public class Message {
      * Méthode pour afficher la demande du sexe
      * @return un int correspondant à l'ordinal de l'énumération
      */
-    //on peur faire un affichage en passant dans le tableau Sexe.values()
+    //on peur faire un affichage en passant dans le tableau Sexe  .values()
     public static int sexe() {
         Scanner sc = new Scanner(System.in);
         int valeur;

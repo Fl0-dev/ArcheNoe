@@ -8,6 +8,9 @@ import packException.EspeceException;
 import packException.SexeException;
 import packException.Verif;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Classe Arche
  * qui regroupe 8 animaux maximum
@@ -15,7 +18,7 @@ import packException.Verif;
  */
 public class Arche {
     //création du tableau de stockage des animaux
-    Animal[] animaux = new Animal[8];
+    List<Animal> animaux = new ArrayList<>();
 
     /**
      * Constructeur
@@ -110,9 +113,9 @@ public class Arche {
          * @param animalAajouter animal qui rentre dans l'arche
          */
         public void ajouter (Animal animalAajouter){
-            for (int i = 0; i < animaux.length; i++) {
-                if (animaux[i] == null) {
-                    animaux[i] = animalAajouter;
+            for (int i = 0; i < animaux.size(); i++) {
+                if (animaux.get(i) == null) {
+                    animaux.set(i, animalAajouter);
                     break;
                 }
             }

@@ -2,6 +2,8 @@ package packException;
 
 import animaux.*;
 
+import java.util.List;
+
 public class Verif {
 
 
@@ -44,7 +46,7 @@ public class Verif {
      * @param animalTestee animal qui subira la vérification
      * @return verif true si souci
      */
-    public static boolean sexeVerif(Animal animalTestee, Animal[] tab) {
+    public static boolean sexeVerif(Animal animalTestee, List<Animal> tab) {
         boolean verif = false;
         //pour les animaux du tableau
         for (Animal element : tab) {
